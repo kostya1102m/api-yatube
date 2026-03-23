@@ -1,11 +1,30 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from yatube_api.schema import schema
-
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+    SpectacularRedocView,
+)
 
 urlpatterns = [
-    path('', schema),
     path('admin/', admin.site.urls),
-    path('', include('posts.urls')),
+
+    path('api/', include('api.urls')),
+
+    path(
+        'api/schema/',
+        SpectacularAPIView.as_view(),
+        name='schema',
+    ),
+    path(
+        'swagger/',
+        SpectacularSwaggerView.as_view(url_name='schema'),
+        name='swagger-ui',
+    ),
+    path(
+        'redoc/',
+        SpectacularRedocView.as_view(url_name='schema'),
+        name='redoc',
+    ),
 ]
