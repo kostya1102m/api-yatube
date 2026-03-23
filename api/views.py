@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 from drf_spectacular.utils import extend_schema_view, inline_serializer, extend_schema
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from posts.models import Post, Group
-from .serializers import PostSerializer, GroupSerializer, CommentSerializer
+from .serializers import PostSerializer, GroupSerializer, CommentSerializer, UserRegisterSerializer
 from .permissions import IsAuthorOrReadOnly
 
 class TokenObtainView(APIView):
@@ -67,4 +67,39 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(
             author=self.request.user,
             post=self.get_post(),
+        )
+
+
+class UserRegistrationView(APIView):
+    permission_classes = [AllowAny]
+
+    @extend_schema(
+        tags=['Auth'],
+        request=UserRegisterSerializer,
+        responses={
+            201: inline_serializer(
+                name='RegistrationResponse',
+                fields={
+                    'id': serializers.IntegerField(),
+                    'username': serializers.CharField(),
+                    'email': serializers.CharField(),
+                    # 'token': serializers.CharField(),
+                },
+            ),
+        },
+        auth=[],
+    )
+    def post(self, request, *args, **kwargs):
+        serializer = UserRegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response(
+            {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                # 'token': token.key,
+            },
+            status=status.HTTP_201_CREATED,
         )
