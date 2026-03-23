@@ -1,8 +1,12 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'vdi9ky(ne+$fjlx%8@5eut%o1v7lo%h(dy^)!z^0wu7aqm$rj9'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -18,7 +22,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
     'posts',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +83,34 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+#swagger settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Yatube API',
+    'DESCRIPTION': 'Заебатая документация',
+    'VERSION': 'v1',
+    'SECURITY': [{'TokenAuth': []}],
+    'APPEND_COMPONENTS': {
+        'securitySchemes': {
+            'TokenAuth': {
+                'type': 'apiKey',
+                'in': 'header',
+                'name': 'Authorization',
+                'description': (
+                    'Enter: Token <your_token>\n'
+                    'Example: Token a1b2c3d4e5f6...'
+                ),
+            }
+        }
+    },
+
+    'AUTHENTICATION_WHITELIST': [],
+
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,
+    },
+}
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -90,10 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
@@ -101,8 +131,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
 }
