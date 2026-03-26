@@ -1,14 +1,9 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, serializers, status
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.authtoken.models import Token
+from rest_framework import viewsets
 
-from drf_spectacular.utils import extend_schema_view, inline_serializer, extend_schema
-from rest_framework.authtoken.serializers import AuthTokenSerializer
+from drf_spectacular.utils import extend_schema
 from posts.models import Post, Group
-from .serializers import PostSerializer, GroupSerializer, CommentSerializer, UserRegisterSerializer
+from .serializers import PostSerializer, GroupSerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
     
 @extend_schema(tags=['Posts'])
