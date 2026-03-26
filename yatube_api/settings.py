@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #swagger settings
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Yatube API',
-    'DESCRIPTION': 'Заебатая документация',
+    'DESCRIPTION': 'coco jambo',
     'VERSION': 'v1',
     'SECURITY': [{'TokenAuth': []}],
     'APPEND_COMPONENTS': {
@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_PAGINATION_CLASS':
-        'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10,
+    # 'DEFAULT_PAGINATION_CLASS':
+    #     'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 10,
 }
