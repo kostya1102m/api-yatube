@@ -15,16 +15,16 @@ comments_router.register(
 )
 
 urlpatterns = [
-    path(
-        'v1/register/',
-        UserRegistrationView.as_view(),
-        name='register',
-    ),
-    path(
-        'v1/login/', 
-        TokenObtainView.as_view(), 
-        name='login'
-    ),
+    # path(
+    #     'v1/register/',
+    #     UserRegistrationView.as_view(),
+    #     name='register',
+    # ),
+    # path(
+    #     'v1/login/', 
+    #     TokenObtainView.as_view(), 
+    #     name='login'
+    # ),
     path('v1/', include(router.urls)),
     path(
         'v1/posts/<int:post_id>/',

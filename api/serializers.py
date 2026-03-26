@@ -36,34 +36,34 @@ class CommentSerializer(serializers.ModelSerializer):
         read_only_fields = ('author', 'post')
 
 
-class UserRegisterSerializer(serializers.Serializer):
+# class UserRegisterSerializer(serializers.Serializer):
 
-    username = serializers.CharField(
-        required=True,
-        min_length=3,
-        max_length=20,
-    )
-    email = serializers.EmailField(required=False)
-    password = serializers.CharField(
-        required=True,
-        write_only=True,
-        min_length=8,
-        style={'input_type': 'password'},
-    )
+#     username = serializers.CharField(
+#         required=True,
+#         min_length=3,
+#         max_length=20,
+#     )
+#     email = serializers.EmailField(required=False)
+#     password = serializers.CharField(
+#         required=True,
+#         write_only=True,
+#         min_length=8,
+#         style={'input_type': 'password'},
+#     )
 
-    def validate_username(self, value):
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError(
-                'Пользователь с таким username уже существует.'
-            )
-        return value
+#     def validate_username(self, value):
+#         if User.objects.filter(username=value).exists():
+#             raise serializers.ValidationError(
+#                 'Пользователь с таким username уже существует.'
+#             )
+#         return value
 
-    def validate_email(self, value):
-        if value and User.objects.filter(email=value).exists():
-            raise serializers.ValidationError(
-                'Пользователь с таким email уже существует.'
-            )
-        return value
+#     def validate_email(self, value):
+#         if value and User.objects.filter(email=value).exists():
+#             raise serializers.ValidationError(
+#                 'Пользователь с таким email уже существует.'
+#             )
+#         return value
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+#     def create(self, validated_data):
+#         return User.objects.create_user(**validated_data)
