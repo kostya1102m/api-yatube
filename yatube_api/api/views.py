@@ -17,7 +17,7 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
 
-@extend_schema(tags=['Post Groups'])
+@extend_schema(tags=['Groups'])
 class GroupViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
