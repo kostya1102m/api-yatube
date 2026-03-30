@@ -12,7 +12,6 @@ urlpatterns = [
 
     path('api/', include('api.urls')),
 
-    #path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.jwt')),
 
     path(
