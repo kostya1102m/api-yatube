@@ -8,7 +8,7 @@ app_name = 'api'
 router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='posts')
 router.register(r'groups', GroupViewSet, basename='groups')
-router.register(r'follow', FollowViewSet, basename='follow')
+router.register(r'follows', FollowViewSet, basename='follow')
 
 comments_router = SimpleRouter()
 comments_router.register(

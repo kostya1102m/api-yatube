@@ -87,7 +87,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #swagger settings
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Yatube API',
-    'DESCRIPTION': 'Заебатая документация',
+    'DESCRIPTION': 'coco jambo',
     'VERSION': 'v1',
     'SECURITY': [{'Bearer': []}],
     'APPEND_COMPONENTS': {
@@ -97,9 +97,7 @@ SPECTACULAR_SETTINGS = {
                 'scheme': 'bearer',
                 'bearerFormat': 'JWT',
                 'description': (
-                    'JWT-токен авторизации.\n'
-                    'Получите на /api/v1/jwt/create/\n'
-                    'Вставьте сюда без префикса Bearer'
+                    'JSON WEB TOKEN авторизации.\n'
                 ),
             }
         }
@@ -144,7 +142,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
