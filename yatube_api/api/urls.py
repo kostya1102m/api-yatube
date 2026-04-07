@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from .views import FollowViewSet, PostViewSet, GroupViewSet, CommentViewSet
+from .views import FollowViewSet, PostViewSet, GroupViewSet, CommentViewSet, UserViewSet
 
 app_name = 'api'
 
@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r'posts', PostViewSet, basename='posts')
 router.register(r'groups', GroupViewSet, basename='groups')
 router.register(r'follows', FollowViewSet, basename='follow')
+router.register(r'users', UserViewSet, basename='users')
 
 comments_router = SimpleRouter()
 comments_router.register(
