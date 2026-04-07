@@ -64,3 +64,10 @@ class FollowSerializer(serializers.ModelSerializer):
                 'Нельзя подписаться на самого себя.'
             )
         return value
+    
+
+class UserSerializer(serializers.ModelSerializer):    
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+        read_only_fields = ('id', 'username')
