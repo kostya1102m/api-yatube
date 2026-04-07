@@ -3,7 +3,7 @@
 ### 1. Клонировать репозиторий
 
 ```bash
-git clone https://github.com/your-username/api-yatube.git
+git clone https://github.com/kostyam1102/api-yatube.git
 cd api-yatube
 ```
 2. Создать и активировать виртуальное окружение
