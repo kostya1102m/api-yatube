@@ -50,7 +50,7 @@ pip install -r requirements.txt
 ```
 4. Создать файл .env
 ```bash
-echo SECRET_KEY=your-secret-key-here > .env
+SECRET_KEY=your-secret-key-here
 ```
 5. Выполнить миграции
 ```bash

@@ -138,11 +138,13 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS':
     #     'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE': 10,
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.HATEOASPagination',
+    'PAGE_SIZE': 10,
 }
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
